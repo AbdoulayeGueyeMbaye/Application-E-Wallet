@@ -1,8 +1,16 @@
 <?php
-require 'repository.php';
-require 'validator.php'; 
-require 'services.php';
-require 'controller.php';
+
+require_once 'repository.php';
+require_once 'validator.php';
+require_once 'services.php';
+require_once 'controller.php';
+
+use function App\Repository\initData;
+
+use function App\Controller\creerWallet;
+use function App\Controller\faireDepot;
+use function App\Controller\faireRetrait;
+use function App\Controller\listerTransactions;
 
 
 initData();
@@ -17,7 +25,7 @@ do {
     echo "\n                        \n";
     echo "Votre choix : ";
     
-    $choix = trim(fgets(STDIN));
+    $choix = trim(fgets(STDIN)); 
     
     switch ($choix) {
         case '1':

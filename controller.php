@@ -1,4 +1,15 @@
 <?php
+
+
+namespace App\Controller;
+
+use function App\Service\serviceCreerWallet;
+use function App\Service\serviceDepot;
+use function App\Service\serviceRetrait;
+
+use function App\Repository\getAllTransactions;
+use function App\Repository\getTransactionsParTel;
+
 function creerWallet() {
     echo "**** Création Wallet ****\n";
     echo " Numéro de téléphone : ";
