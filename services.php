@@ -1,4 +1,20 @@
 <?php
+
+    namespace App\Service;
+
+use function App\Repository\ajouterWallet;
+use function App\Repository\trouverWalletParTel;
+use function App\Repository\majSoldeWallet;
+use function App\Repository\ajouterTransaction;
+
+use function App\Validator\validerChampsObligatoires;
+use function App\Validator\validerSoldeInitial;
+use function App\Validator\validerUniciteTel;
+use function App\Validator\validerUniciteCode;
+use function App\Validator\validerWalletExiste;
+use function App\Validator\validerMontantPositif;
+use function App\Validator\validerSoldeSuffisant;
+
 function serviceCreerWallet($tel, $nom, $solde, $code) {
     
     if (!validerChampsObligatoires($tel, $nom, $code)) {
@@ -18,7 +34,7 @@ function serviceCreerWallet($tel, $nom, $solde, $code) {
     return ['success' => true, 'message' => 'Wallet créé avec succès'];
 }
 
-function calculerFraisRetrait($montant) {
+function calculerFraisRetrait($montant) { //calcul de frais 
     
     if ($montant >= 0 && $montant <= 10000) {
         return 200;

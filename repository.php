@@ -1,6 +1,9 @@
 <?php
-$wallets = []; 
-$transactions = []; 
+
+    namespace App\Repository;
+
+$wallets = [];
+$transactions = [];
 
 function initData() {
     global $wallets, $transactions;
@@ -26,24 +29,21 @@ function ajouterWallet($tel, $nom, $solde, $code) {
 function trouverWalletParTel($tel) {
     global $wallets;
 
-    foreach ($wallets as $wallet) {
-        if ($wallet['tel'] === $tel) {
-            return $wallet;
-        }
+    $index = array_search($tel, array_column($wallets, 'tel'));
+
+    if ($index !== false) {
+        return $wallets[$index];
     }
+
     return null;
 }
 
 function trouverIndexWalletParTel($tel) {
     global $wallets;
-    $index = 0;
-    foreach ($wallets as $wallet) {
-        if ($wallet['tel'] === $tel) {
-            return $index;
-        }
-        $index++;
-    }
-    return -1;
+
+    $index = array_search($tel, array_column($wallets, 'tel'));
+
+    return $index !== false ? $index : -1;
 }
 
 function majSoldeWallet($tel, $nouveauSolde) {
@@ -58,6 +58,7 @@ function majSoldeWallet($tel, $nouveauSolde) {
 
 function ajouterTransaction($tel, $type, $montant, $frais = 0) {
     global $transactions;
+
     $transaction = [
         'tel' => $tel,
         'type' => $type,
@@ -65,10 +66,8 @@ function ajouterTransaction($tel, $type, $montant, $frais = 0) {
         'frais' => $frais,
         'date' => date('Y-m-d H:i:s')
     ];
-    
-    $taille = 0;
-    foreach ($transactions as $t) { $taille++; }
-    $transactions[$taille] = $transaction;
+
+    array_push($transactions, $transaction);
 }
 
 function getAllTransactions() {

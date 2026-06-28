@@ -1,5 +1,11 @@
 <?php
-function validerChampsObligatoires($tel, $nom, $code) {
+
+    namespace App\Validator;
+
+    use function App\Repository\trouverWalletParTel;
+    use function App\Repository\codeSecretExiste;
+
+function validerChampsObligatoires($tel, $nom, $code) { //champs obligatoire
     return $tel !== '' && $nom !== '' && $code !== ''; 
 }
 
