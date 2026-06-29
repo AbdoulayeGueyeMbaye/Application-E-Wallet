@@ -60,7 +60,7 @@ function serviceDepot($tel, $montant) {
     majSoldeWallet($tel, $nouveauSolde);
     ajouterTransaction($tel, 'DEPOT', $montant, 0);
     
-    return ['success' => true, 'message' => "Dépôt de $montant CFA effectué. Nouveau solde: $nouveauSolde CFA"];
+    return ['success' => true, 'message' => "Dépôt de $montant FCFA effectué. Nouveau solde: $nouveauSolde FCFA"];
 }
 
 function serviceRetrait($tel, $montant) {
@@ -83,6 +83,6 @@ function serviceRetrait($tel, $montant) {
     majSoldeWallet($tel, $nouveauSolde);
     ajouterTransaction($tel, 'RETRAIT', $montant, $frais);
     
-    return ['success' => true, 'message' => "Retrait de $montant CFA effectué. Frais: $frais CFA. Nouveau solde: $nouveauSolde CFA"];
+    return ['success' => true, 'message' => "Retrait de $montant FCFA effectué. Frais: $frais FCFA. Nouveau solde: $nouveauSolde FCFA"];
 }
 ?>
